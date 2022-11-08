@@ -59,30 +59,30 @@ demo_promtail_forwarder_logs = cloudwatch.LogGroup("demo-lambda-loggroup",
 
 # Create the Lambda function from the ECR image:
 demo_promtail_lambda_function = lambda_.Function("demo-lambda-promtail",
-        name="lambda_promtail",
-        image_uri=demo_promtail_image_uri,
-        role=demo_promtail_role.arn,
-        memory_size=256,
-        timeout=60,
-        architectures=["arm64"],
-        package_type="Image",
-        vpc_config=lambda_.FunctionVpcConfigArgs(
-            subnet_ids=[demo_private_subnet.id],
-            security_group_ids=[demo_sg.id],
-        ),
-        environment=lambda_.FunctionEnvironmentArgs(
-            variables={
-                "WRITE_ADDRESS": "",
-                "USERNAME": "",
-                "PASSWORD": "",
-                "BEARER_TOKEN": "",
-                "KEEP_STREAM": "",
-                "BATCH_SIZE": "",
-                "EXTRA_LABELS": "",
-                "TENANT_ID": ""
-            },
-        ),
-        tags=general_tags)
+    name="lambda_promtail",
+    image_uri=demo_promtail_image_uri,
+    role=demo_promtail_role.arn,
+    memory_size=256,
+    timeout=60,
+    architectures=["arm64"],
+    package_type="Image",
+    vpc_config=lambda_.FunctionVpcConfigArgs(
+        subnet_ids=[demo_private_subnet.id],
+        security_group_ids=[demo_sg.id],
+    ),
+    environment=lambda_.FunctionEnvironmentArgs(
+        variables={
+            "WRITE_ADDRESS": "",
+            "USERNAME": "",
+            "PASSWORD": "",
+            "BEARER_TOKEN": "",
+            "KEEP_STREAM": "",
+            "BATCH_SIZE": "",
+            "EXTRA_LABELS": "",
+            "TENANT_ID": ""
+        },
+    ),
+    tags=general_tags)
 
 # Allow for the lambda function to be invoked by S3 notifications in the spoke account
 allow_invoke_lambda_from_spoke_s3 = lambda_.Permission("demo-lambda-promtail-invoke-permission",

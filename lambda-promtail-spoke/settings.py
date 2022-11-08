@@ -1,4 +1,5 @@
 import pulumi
+from pulumi_aws import get_caller_identity
 
 """
 General resource tags.
@@ -19,3 +20,4 @@ demo_bucket_name = project_config.require("log-bucket-name")
 demo_promtail_lambda_role_arn = project_config.require("lambda-promtail-role-arn")
 demo_promtail_lambda_function_arn = project_config.require("lambda-promtail-function-arn")
 regional_alb_account_id = project_config.require("regional-alb-account")
+account_id = get_caller_identity().account_id

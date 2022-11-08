@@ -43,7 +43,7 @@ demo_sg = ec2.SecurityGroup("demo-security-group",
 
 # Create a private subnet to host the Lambda function, it's route table and corresponding association:
 demo_private_subnet = ec2.Subnet("demo-private-subnet",
-    cidr_block="10.200.0.0/20",
+    cidr_block="10.100.0.0/20",
     vpc_id=demo_vpc.id,
     tags={**general_tags, "Name": f"demo-privsub-{config.region}"}
 )
@@ -53,14 +53,14 @@ demo_private_subnet_route_table = ec2.RouteTable("demo-private-route-table",
     tags={**general_tags, "Name": f"demo-privsub-rt-{config.region}"}
 )
 
-demo_private_subnet_route_table_association = ec2.RouteTableAssociation("private-route-table-association",
+demo_private_subnet_route_table_association = ec2.RouteTableAssociation("demo-private-route-table-association",
     route_table_id=demo_private_subnet_route_table.id,
     subnet_id=demo_private_subnet.id
 )
 
 # Create a public subnet to host a NAT gateway, it's route table and corresponding association:
 demo_public_subnet = ec2.Subnet("demo-public-subnet",
-    cidr_block="10.200.16.0/20",
+    cidr_block="10.100.16.0/20",
     vpc_id=demo_vpc.id,
     tags={**general_tags, "Name": f"demo-pubsub-{config.region}"}
 )
@@ -70,7 +70,7 @@ demo_public_subnet_route_table = ec2.RouteTable("demo-public-route-table",
     tags={**general_tags, "Name": f"demo-pubsub-rt-{config.region}"}
 )
 
-demo_public_subnet_route_table_association = ec2.RouteTableAssociation("public-route-table-association",
+demo_public_subnet_route_table_association = ec2.RouteTableAssociation("demo-public-route-table-association",
     route_table_id=demo_public_subnet_route_table.id,
     subnet_id=demo_public_subnet.id
 )
