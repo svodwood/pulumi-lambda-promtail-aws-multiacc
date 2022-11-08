@@ -3,6 +3,11 @@ import json
 from pulumi_aws import s3
 from settings import account_id, general_tags, demo_bucket_name, regional_alb_account_id, demo_promtail_lambda_role_arn, demo_promtail_lambda_function_arn
 
+"""
+Creates an S3 log storage location
+"""
+
+# Create the log bucket:
 demo_s3_access_log_bucket = s3.Bucket("demo-s3-spoke-log-bucket",
     bucket=demo_bucket_name,
     lifecycle_rules=[
@@ -17,6 +22,7 @@ demo_s3_access_log_bucket = s3.Bucket("demo-s3-spoke-log-bucket",
     tags=general_tags
 )
 
+# Add a bucket policy:
 demo_s3_log_bucket_policy = s3.Bucket("demo-s3-spoke-log-bucket-policy",
     bucket=demo_s3_access_log_bucket.id,
     policy=json.dumps({
@@ -45,6 +51,7 @@ demo_s3_log_bucket_policy = s3.Bucket("demo-s3-spoke-log-bucket-policy",
         ]
     }))
 
+# Add an event notification to the s3 bucket:
 demo_s3_log_bucket_notification = s3.BucketNotification("demo-s3-spoke-log-bucket-notification",
     bucket=demo_s3_access_log_bucket.id,
     lambda_functions=[s3.BucketNotificationLambdaFunctionArgs(
