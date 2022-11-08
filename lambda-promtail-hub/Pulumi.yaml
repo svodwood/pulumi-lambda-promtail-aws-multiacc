@@ -1,0 +1,17 @@
+name: lambda-promtail-hub
+description: A minimal AWS Python Pulumi program
+runtime:
+    name: python
+    options:
+        virtualenv: venv
+template:
+  config:
+    aws:region: 
+        description: Region to deploy the stack into
+        default: us-west-2
+    vpc-cidr:
+        description: CIDR of the hub VPC
+        default: 10.100.0.0/16
+    log-bucket-name:
+        description: S3 access log bucket name
+        default: demo-promtail-bucket-424269
