@@ -1,0 +1,3 @@
+import pulumi
+from pulumi_aws import s3
+from settings import regional_alb_account_id, demo_bucket_name, demo_promtail_lambda_role_arn, demo_promtail_lambda_function_arn

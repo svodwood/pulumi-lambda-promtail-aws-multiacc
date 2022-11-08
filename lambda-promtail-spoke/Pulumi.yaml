@@ -4,3 +4,22 @@ runtime:
     name: python
     options:
         virtualenv: venv
+template:
+  config:
+    aws:region: 
+        description: Region to deploy the stack into
+        default: us-east-1
+    aws:profile:
+        description: AWS CLI profile name for the hub account
+    vpc-cidr:
+        description: CIDR of the hub VPC
+        default: 10.200.0.0/16
+    log-bucket-name:
+        description: S3 bucket name, same as in hub
+    lambda-promtail-role-arn:
+        description: ARN of the lambda-promtail function's IAM role in the hub account
+    lambda-promtail-function-arn:
+        description: ARN of the lambda-promtail function itself in the hub account
+    regional-alb-account:
+        description: the ID of the AWS account for Elastic Load Balancing for your Region
+        default: 127311923021

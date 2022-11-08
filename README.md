@@ -1,1 +1,1 @@
-# Multi-account ALB Log Collection with Lambda-promtail
+# Lambda Promtail Pulumi Demo

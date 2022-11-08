@@ -8,10 +8,13 @@ template:
   config:
     aws:region: 
         description: Region to deploy the stack into
-        default: us-west-2
+        default: us-east-1
+    aws:profile:
+        description: AWS CLI profile name for the hub account
     vpc-cidr:
         description: CIDR of the hub VPC
         default: 10.100.0.0/16
     log-bucket-name:
-        description: S3 access log bucket name
-        default: demo-promtail-bucket-424269
+        description: S3 bucket name
+    promtail-image-uri:
+        description: A private ECR image uri of the lambda-promtail container image

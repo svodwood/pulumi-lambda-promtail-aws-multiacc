@@ -16,3 +16,4 @@ project_config = pulumi.Config()
 
 demo_vpc_cidr = project_config.require("vpc-cidr")
 demo_bucket_name = project_config.require("log-bucket-name")
+demo_promtail_image_uri = project_config.require("promtail-image-uri")
