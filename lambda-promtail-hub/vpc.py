@@ -1,6 +1,6 @@
 import pulumi
 from pulumi_aws import ec2, config
-from settings import demo_vpc_cidr, general_tags
+from settings import demo_vpc_cidr, general_tags, public_subnet_cidr, private_subnet_cidr
 
 """
 Creates a minium of AWS networking objects required for the demo stack to work
@@ -43,7 +43,7 @@ demo_sg = ec2.SecurityGroup("demo-security-group",
 
 # Create a private subnet to host the Lambda function, it's route table and corresponding association:
 demo_private_subnet = ec2.Subnet("demo-private-subnet",
-    cidr_block="10.100.0.0/20",
+    cidr_block=private_subnet_cidr,
     vpc_id=demo_vpc.id,
     tags={**general_tags, "Name": f"demo-privsub-{config.region}"}
 )
@@ -60,7 +60,7 @@ demo_private_subnet_route_table_association = ec2.RouteTableAssociation("demo-pr
 
 # Create a public subnet to host a NAT gateway, it's route table and corresponding association:
 demo_public_subnet = ec2.Subnet("demo-public-subnet",
-    cidr_block="10.100.16.0/20",
+    cidr_block=public_subnet_cidr,
     vpc_id=demo_vpc.id,
     tags={**general_tags, "Name": f"demo-pubsub-{config.region}"}
 )

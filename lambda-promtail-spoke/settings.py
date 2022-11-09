@@ -15,7 +15,12 @@ Configuration variables from pulumi settings file
 
 project_config = pulumi.Config()
 
-demo_vpc_cidr = project_config.require("vpc-cidr")
+demo_vpc_cidr = "10.200.0.0/16"
+demo_public_subnet_cidrs = [
+    "10.200.0.0/20",
+    "10.200.16.0/20"
+]
+
 demo_bucket_name = project_config.require("log-bucket-name")
 demo_promtail_lambda_role_arn = project_config.require("lambda-promtail-role-arn")
 demo_promtail_lambda_function_arn = project_config.require("lambda-promtail-function-arn")

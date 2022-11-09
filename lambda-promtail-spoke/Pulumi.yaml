@@ -11,9 +11,6 @@ template:
         default: us-east-1
     aws:profile:
         description: AWS CLI profile name for the hub account
-    vpc-cidr:
-        description: CIDR of the hub VPC
-        default: 10.200.0.0/16
     log-bucket-name:
         description: S3 bucket name, same as in hub
     lambda-promtail-role-arn:

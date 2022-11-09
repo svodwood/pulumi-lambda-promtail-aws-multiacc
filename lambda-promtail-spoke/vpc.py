@@ -1,6 +1,6 @@
 import pulumi
 from pulumi_aws import ec2, config, get_availability_zones
-from settings import demo_vpc_cidr, general_tags
+from settings import demo_vpc_cidr, general_tags, demo_public_subnet_cidrs
 
 """
 Creates a minium of AWS networking objects required for the demo stack to work
@@ -44,11 +44,6 @@ demo_sg = ec2.SecurityGroup("demo-security-group",
 # Create demo subnets for the Application Load Balancer
 demo_azs = get_availability_zones(state="available").names
 demo_public_subnets = []
-
-demo_public_subnet_cidrs = [
-    "10.200.0.0/20",
-    "10.200.16.0/20"
-]
 
 for i in range(2):
     prefix = f"{demo_azs[i]}"
