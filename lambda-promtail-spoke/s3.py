@@ -22,6 +22,13 @@ demo_s3_access_log_bucket = s3.Bucket("demo-s3-spoke-log-bucket",
     tags=general_tags
 )
 
+# Add BucketOwnership definition:
+demo_bucket_ownership_controls = s3.BucketOwnershipControls("demo-s3-spoke-log-bucket-acl",
+    bucket=demo_s3_access_log_bucket.id,
+    rule=s3.BucketOwnershipControlsRuleArgs(
+        object_ownership="BucketOwnerEnforced",
+    ))
+
 # Add a bucket policy:
 demo_s3_log_bucket_policy = s3.Bucket("demo-s3-spoke-log-bucket-policy",
     bucket=demo_s3_access_log_bucket.id,

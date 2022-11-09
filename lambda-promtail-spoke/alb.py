@@ -29,7 +29,7 @@ demo_listener = lb.Listener("demo-spoke-listener",
         type="fixed-response",
         fixed_response=lb.ListenerDefaultActionFixedResponseArgs(
             content_type="text/plain",
-            message_body="Log me baby!",
+            message_body="Show this in Grafana",
             status_code="200",
         ),
     )])
