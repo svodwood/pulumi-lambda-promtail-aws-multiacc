@@ -10,6 +10,7 @@ Creates an S3 log storage location
 # Create the log bucket:
 demo_s3_access_log_bucket = s3.Bucket("demo-s3-spoke-log-bucket",
     bucket=demo_bucket_name,
+    force_destroy=True,
     lifecycle_rules=[
         s3.BucketLifecycleRuleArgs(
             enabled=True,
