@@ -18,3 +18,6 @@ Pulumi code to provision demo objects in a spoke log producer account:
 - VPC
 - Application Load Balancer
 - S3 Bucket
+
+## Deployment Instructions
+Detailed instructions provided in this [post](https://svodwood.github.io/devops-pastebin/lambda-promtail).
